@@ -40,3 +40,4 @@ terraform.rc
 public_key.tf
 .tfplan
 gb_key*
+terraform.tfstate.backup

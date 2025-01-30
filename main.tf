@@ -27,3 +27,33 @@ output "public_subnet_ids" {
 output "private_subnet_ids" {
   value = module.vpc.private_subnet_ids
 }
+
+# main.tf
+
+
+module "s3_bucket" {
+  source             = "./modules/s3"
+  bucket_name        = "strangodalo2302kelomo"
+  region             = "us-east-1"
+  acl                = "private"
+  versioning_enabled = "Disabled"
+  sse_algorithm      = "AES256"
+  tags = {
+    Environment = "Production"
+    Terraform   = "true"
+  }
+
+}
+# provider "aws" {
+#   region = "us-east-1" # 
+# }
+
+
+
+output "bucket_id" {
+  value = module.s3_bucket.bucket_id
+}
+
+output "bucket_arn" {
+  value = module.s3_bucket.bucket_arn
+}
